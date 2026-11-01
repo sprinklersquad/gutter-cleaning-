@@ -25,11 +25,32 @@ const cases = [
 for (const [name, patch, price] of cases) {
   const quote = context.calculateQuote({ ...base, ...patch });
   assert.equal(quote.price, price, name);
-  if (price === null) assert.ok(quote.review.length, name);
+  if (price === null) {
+    assert.ok(quote.review.length, name);
+    assert.equal(quote.breakdown.length, 0, 'Custom reviews must not display invented charges');
+  } else {
+    assert.equal(quote.breakdown.reduce((sum, row) => sum + row.amount, 0), price, 'Visible amounts must sum to the accepted price');
+    assert.ok(quote.breakdown.every(row => row.amount > 0), 'Hide zero-value adjustments');
+  }
+}
+const sample = context.calculateQuote(base);
+assert.deepEqual(Array.from(sample.breakdown, row => row.amount), [200, 80, 25, 70]);
+assert.equal(sample.breakdown[2].detail, 'Last cleaned 1–2 years ago');
+const minimumOnly = context.calculateQuote({ ...base, area: '500', stories: '1', history: 'annual', trees: 'light', downspouts: '0' });
+assert.equal(minimumOnly.price, 150);
+assert.equal(minimumOnly.breakdown.length, 1, 'Minimum-only job must not have a fake size adjustment');
+const treeDriven = context.calculateQuote({ ...base, history: 'annual' });
+assert.ok(treeDriven.breakdown.some(row => row.detail === 'Heavy tree coverage or pine needles'));
+for (const area of ['501', '1450', '2201', '9999']) {
+  for (const stories of ['1', '1.5', '2', '3']) {
+    const quote = context.calculateQuote({ ...base, area, stories });
+    assert.equal(quote.breakdown.reduce((sum, row) => sum + row.amount, 0), quote.price);
+  }
 }
 for (const patch of [{ zip: '809' }, { area: '0' }, { stories: '4' }, { trees: 'invalid' }, { downspouts: '99' }]) {
   assert.throws(() => context.calculateQuote({ ...base, ...patch }));
 }
-assert.ok(!embed.includes('data-breakdown'), 'Old customer surcharge breakdown must stay removed');
+assert.ok(embed.includes('data-price-breakdown'), 'Customer-friendly dollar breakdown must be present');
+assert.ok(!embed.includes('Debris allowance'), 'Do not restore confusing customer terminology');
 assert.ok(!embed.includes('lengthLow'), 'Customer price ranges must stay removed');
-console.log(`${cases.length} pricing scenarios, 5 invalid-input cases, preview synchronization, and script syntax passed.`);
+console.log(`${cases.length} pricing scenarios, 16 breakdown rounding scenarios, minimum-only and tree-driven breakdowns, 5 invalid-input cases, preview synchronization, and script syntax passed.`);
