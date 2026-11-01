@@ -1,4 +1,4 @@
-GODADDY GUTTER QUOTE CALCULATOR — VERSION 2.1
+GODADDY GUTTER QUOTE CALCULATOR — VERSION 2.2
 
 WHAT CHANGED
 Two short question screens replace the long questionnaire. Customers see ONE price with a simple dollar breakdown: minimum service charge, home size adjustment, extra cleaning time (with a short reason), and selected downspout clearing. The amounts add up exactly to the total. No square-foot or linear-foot rates are shown. Zero-value adjustments are omitted. They can accept that price, then provide contact details for owner review. Exceptions such as guards, gutters over 40 feet, difficult access, or more than six blocked downspouts receive a property-review path before any price is offered.
@@ -37,8 +37,8 @@ You are accepting estimation risk when accurate customer answers produce an unus
 
 OWNER SETTINGS — IN CONFIG NEAR THE SCRIPT TOP
 Up to ordinary one-story height: $149 minimum / $1.25 internal foot.
-Two stories or partial/split levels: $199 minimum / $1.75 internal foot.
-Three stories: $299 minimum / $2.25 internal foot.
+Two stories or partial/split levels: $175 minimum / $1.75 internal foot.
+Three stories: $250 minimum / $2.25 internal foot.
 A walkout/slope increases a ranch to the middle band; a two-story home with that extra exposure uses the high band. A checked over-40-ft answer always routes to review without a price. Stories remain a rough proxy for working height and must be checked during review.
 Internal gutter estimate = 3.5 * square root(above-ground area / stories) + 30 ft for typical extra runs, rounded up to 10 ft. This is a provisional, unvalidated estimating model. No range is displayed.
 Base = greater of band minimum and internal feet times rate.
@@ -46,7 +46,7 @@ Last-cleaning charge: within year $0; 1–2 years $25; over 2 years/never $50; u
 Tree coverage charge: light $0; moderate $10; heavy $25.
 Only the LARGEST of cleaning-history and tree charges applies. These do not stack. This extra time is INCLUDED in the single displayed price and identified as Extra cleaning time in the breakdown, with the strongest applicable reason. It is not added again at checkout.
 Known accessible downspout blockage clearing: $35 per selected downspout, included in total. No known blockage/unknown count adds $0; unknown work is explicitly excluded pending inspection and a separate approved quote. Accessible outlet suction remains included.
-Total rounds up to $5. Examples: minimum $149 displays $150, $199 displays $200.
+Minimum-based quotes retain the exact $149 / $175 / $250 minimum plus applicable extras. Size-driven quotes round up to $5; the size-adjustment line includes any rounding.
 No separate mileage surcharge is included in this version. Quoted packages assume residential service in El Paso County; collect ZIP before pricing and full address after acceptance, then verify county/service eligibility. ZIP alone does NOT validate county boundaries or driving distance. Travel within the county is included in package pricing; change the pricing policy and visible copy together if you want narrower service zones. Do not add an undisclosed mileage fee after acceptance.
 No tax is separately calculated; review your own applicable tax treatment before using as an invoice. The tool produces a quote request, not a final invoice.
 
@@ -59,4 +59,4 @@ No customer payment, photo upload, scheduling calendar, browser storage, or anal
 VALIDATION
 Pricing, input validation, and exception routing are checked locally. Browser submission tests use an isolated LOCAL simulated endpoint; no customer data, activation email, or real lead was sent to FormSubmit during these tests. Real inbox delivery and GoDaddy iframe behavior must be verified after installation and activation.
 
-2026-11-01 / price-breakdown-v2.1
+2026-11-01 / minimums-v2.2
