@@ -1,0 +1,62 @@
+GODADDY GUTTER QUOTE CALCULATOR — VERSION 2
+
+WHAT CHANGED
+Two short question screens replace the long questionnaire. Customers see ONE price, not a range, gutter footage, or a debris allowance. They can accept that price, then provide contact details for owner review. Exceptions such as guards, gutters over 40 feet, difficult access, or more than six blocked downspouts receive a property-review path before any price is offered.
+
+INSTALL
+1. In GoDaddy Websites + Marketing, Edit Website > Add Section > HTML.
+2. Open embed.html in Notepad. Copy ALL of its contents into Custom Code.
+3. Start with Forced Height blank (auto-height). Preview both question screens, the price, the contact form, and success/error states on desktop and mobile. If clipped, increase forced height to fit the tallest state (try 1500 px initially and adjust).
+4. Complete EMAIL ACTIVATION below and verify delivery before public use.
+5. Publish your changes. This package has not changed your live site.
+GoDaddy instructions: https://www.godaddy.com/en-ca/help/add-html-or-custom-code-to-my-site-27252
+
+EMAIL ACTIVATION — REQUIRED BEFORE ACCEPTING LIVE LEADS
+Recipient: tpatton@sprinklersquad.com
+The embed uses FormSubmit as an external form-to-email processor because a static GoDaddy custom-code section cannot independently deliver email. The customer form discloses that their details go through FormSubmit. No API key is needed. Standard service filtering/availability still apply.
+FormSubmit requires first-use email confirmation. No activation email or real lead was sent during development. You must activate and verify your actual website form before relying on it.
+1. Temporarily paste the FORM from email-setup.html into a GoDaddy HTML section, preview/publish as necessary, and use its setup button. It sends a setup request, not a customer acceptance. A local file:// opening may be rejected by the service; use an HTTPS-hosted page.
+2. Check tpatton@sprinklersquad.com (including spam) and follow FormSubmit's confirmation link. Complete any provider-required challenge yourself.
+3. Remove the temporary setup form from your public page.
+4. On the published site, submit one clearly labeled test through the actual calculator and verify the request arrives with the selected price, customer details, ZIP, every property answer, pricing version, and review status. If FormSubmit requests confirmation for that form/site too, complete it and repeat the test.
+5. Until you have verified this delivery, do not rely on the online submission path. The calculator offers an email-app fallback if a request fails or activation is reported as pending. A successful service response confirms provider acceptance, not inbox delivery.
+FormSubmit documentation: https://formsubmit.co/ and https://formsubmit.co/ajax-documentation
+There is no automatic customer confirmation email; AJAX submissions do not support FormSubmit autoresponse. Your website success message says the request was submitted for review, not that an appointment was booked or an email was delivered.
+
+FILES
+embed.html — complete paste-in code.
+embed.html — the same editable component.
+index.html — standalone local preview. Trying submission here will contact FormSubmit; do not submit customer data from a file preview.
+email-setup.html — owner-only email activation helper.
+INSTALLATION.txt — this guide.
+
+PRICING POLICY TO REVIEW AS OWNER
+The one displayed amount is a PACKAGE QUOTE based on the customer's answers, not an assertion that a house-size formula can measure real gutters exactly.
+Customer-facing policy: the price stays the same when the answers match the property and requested work. If something differs, explain the difference and obtain approval before changing the price. Review requests do not book appointments or collect payment.
+You are accepting estimation risk when accurate customer answers produce an unusual gutter footprint. Do not automatically increase the price just because the length model was wrong. Review your margins, tune the package formula with real jobs, or decline an unsupported scope during review. This package does not enforce contracts or handle payments.
+
+OWNER SETTINGS — IN CONFIG NEAR THE SCRIPT TOP
+Up to ordinary one-story height: $149 minimum / $1.25 internal foot.
+Two stories or partial/split levels: $199 minimum / $1.75 internal foot.
+Three stories: $299 minimum / $2.25 internal foot.
+A walkout/slope increases a ranch to the middle band; a two-story home with that extra exposure uses the high band. A checked over-40-ft answer always routes to review without a price. Stories remain a rough proxy for working height and must be checked during review.
+Internal gutter estimate = 3.5 * square root(above-ground area / stories) + 30 ft for typical extra runs, rounded up to 10 ft. This is a provisional, unvalidated estimating model. No range is displayed.
+Base = greater of band minimum and internal feet times rate.
+Last-cleaning charge: within year $0; 1–2 years $25; over 2 years/never $50; unknown $25.
+Tree coverage charge: light $0; moderate $10; heavy $25.
+Only the LARGEST of cleaning-history and tree charges applies. These do not stack. This extra time is INCLUDED in the single displayed price, not separately charged at checkout.
+Known accessible downspout blockage clearing: $35 per selected downspout, included in total. No known blockage/unknown count adds $0; unknown work is explicitly excluded pending inspection and a separate approved quote. Accessible outlet suction remains included.
+Total rounds up to $5. Examples: minimum $149 displays $150, $199 displays $200.
+No separate mileage surcharge is included in this version. Quoted packages assume residential service in El Paso County; collect ZIP before pricing and full address after acceptance, then verify county/service eligibility. ZIP alone does NOT validate county boundaries or driving distance. Travel within the county is included in package pricing; change the pricing policy and visible copy together if you want narrower service zones. Do not add an undisclosed mileage fee after acceptance.
+No tax is separately calculated; review your own applicable tax treatment before using as an invoice. The tool produces a quote request, not a final invoice.
+
+LEAD CONTENT AND SECURITY
+Each request contains selected price, property ZIP/address, name, email, phone, notes, all input answers, version, and accepted-for-review status. Custom-review requests explicitly state no price was accepted. The owner must verify the inputs, scope, and price calculation before confirmation. Client-side prices and fields can be modified by a visitor; no server-side price verification is included.
+Changing property answers clears the active quote and requires recalculation. Duplicate clicks are blocked while sending. Requests have a timeout and show failure with an email fallback. A timed-out request may still have reached the provider; customers are warned to check before resending.
+The service endpoint can be replaced with your own HTTPS JSON-compatible endpoint via submissionUrl. Update response handling and privacy copy if changing providers. Never put private API keys in this public embed.
+No customer payment, photo upload, scheduling calendar, browser storage, or analytics are included. No contact details leave the page until the visitor submits. The external processor and GoDaddy may have their own data handling.
+
+VALIDATION
+Pricing, input validation, and exception routing are checked locally. Browser submission tests use an isolated LOCAL simulated endpoint; no customer data, activation email, or real lead was sent to FormSubmit during these tests. Real inbox delivery and GoDaddy iframe behavior must be verified after installation and activation.
+
+2026-10-31 / fixed-price-v2
