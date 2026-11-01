@@ -1,7 +1,7 @@
-GODADDY GUTTER QUOTE CALCULATOR — VERSION 2
+GODADDY GUTTER QUOTE CALCULATOR — VERSION 2.1
 
 WHAT CHANGED
-Two short question screens replace the long questionnaire. Customers see ONE price, not a range, gutter footage, or a debris allowance. They can accept that price, then provide contact details for owner review. Exceptions such as guards, gutters over 40 feet, difficult access, or more than six blocked downspouts receive a property-review path before any price is offered.
+Two short question screens replace the long questionnaire. Customers see ONE price with a simple dollar breakdown: minimum service charge, home size adjustment, extra cleaning time (with a short reason), and selected downspout clearing. The amounts add up exactly to the total. No square-foot or linear-foot rates are shown. Zero-value adjustments are omitted. They can accept that price, then provide contact details for owner review. Exceptions such as guards, gutters over 40 feet, difficult access, or more than six blocked downspouts receive a property-review path before any price is offered.
 
 INSTALL
 1. In GoDaddy Websites + Marketing, Edit Website > Add Section > HTML.
@@ -44,14 +44,14 @@ Internal gutter estimate = 3.5 * square root(above-ground area / stories) + 30 f
 Base = greater of band minimum and internal feet times rate.
 Last-cleaning charge: within year $0; 1–2 years $25; over 2 years/never $50; unknown $25.
 Tree coverage charge: light $0; moderate $10; heavy $25.
-Only the LARGEST of cleaning-history and tree charges applies. These do not stack. This extra time is INCLUDED in the single displayed price, not separately charged at checkout.
+Only the LARGEST of cleaning-history and tree charges applies. These do not stack. This extra time is INCLUDED in the single displayed price and identified as Extra cleaning time in the breakdown, with the strongest applicable reason. It is not added again at checkout.
 Known accessible downspout blockage clearing: $35 per selected downspout, included in total. No known blockage/unknown count adds $0; unknown work is explicitly excluded pending inspection and a separate approved quote. Accessible outlet suction remains included.
 Total rounds up to $5. Examples: minimum $149 displays $150, $199 displays $200.
 No separate mileage surcharge is included in this version. Quoted packages assume residential service in El Paso County; collect ZIP before pricing and full address after acceptance, then verify county/service eligibility. ZIP alone does NOT validate county boundaries or driving distance. Travel within the county is included in package pricing; change the pricing policy and visible copy together if you want narrower service zones. Do not add an undisclosed mileage fee after acceptance.
 No tax is separately calculated; review your own applicable tax treatment before using as an invoice. The tool produces a quote request, not a final invoice.
 
 LEAD CONTENT AND SECURITY
-Each request contains selected price, property ZIP/address, name, email, phone, notes, all input answers, version, and accepted-for-review status. Custom-review requests explicitly state no price was accepted. The owner must verify the inputs, scope, and price calculation before confirmation. Client-side prices and fields can be modified by a visitor; no server-side price verification is included.
+Each request contains the same dollar breakdown shown to the customer, selected price, property ZIP/address, name, email, phone, notes, all input answers, version, and accepted-for-review status. Custom-review requests explicitly state no price was accepted. The owner must verify the inputs, scope, and price calculation before confirmation. Client-side prices and fields can be modified by a visitor; no server-side price verification is included.
 Changing property answers clears the active quote and requires recalculation. Duplicate clicks are blocked while sending. Requests have a timeout and show failure with an email fallback. A timed-out request may still have reached the provider; customers are warned to check before resending.
 The service endpoint can be replaced with your own HTTPS JSON-compatible endpoint via submissionUrl. Update response handling and privacy copy if changing providers. Never put private API keys in this public embed.
 No customer payment, photo upload, scheduling calendar, browser storage, or analytics are included. No contact details leave the page until the visitor submits. The external processor and GoDaddy may have their own data handling.
@@ -59,4 +59,4 @@ No customer payment, photo upload, scheduling calendar, browser storage, or anal
 VALIDATION
 Pricing, input validation, and exception routing are checked locally. Browser submission tests use an isolated LOCAL simulated endpoint; no customer data, activation email, or real lead was sent to FormSubmit during these tests. Real inbox delivery and GoDaddy iframe behavior must be verified after installation and activation.
 
-2026-10-31 / fixed-price-v2
+2026-11-01 / price-breakdown-v2.1
