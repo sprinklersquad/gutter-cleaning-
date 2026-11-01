@@ -1,6 +1,6 @@
 {
   "name": "gutter-cleaning-calculator",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "description": "Single-price gutter cleaning calculator for a GoDaddy HTML section",
   "scripts": { "test": "node test.mjs" }
