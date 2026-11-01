@@ -64,8 +64,8 @@
   const CONFIG = {
     recipient: 'tpatton@sprinklersquad.com',
     submissionUrl: '', // Optional HTTPS form endpoint; blank uses FormSubmit for recipient above.
-    version: '2026-11-01-price-breakdown-v2.1',
-    bands: { low: { minimum:149, rate:1.25 }, medium: { minimum:199, rate:1.75 }, high: { minimum:299, rate:2.25 } },
+    version: '2026-11-01-minimums-v2.2',
+    bands: { low: { minimum:149, rate:1.25 }, medium: { minimum:175, rate:1.75 }, high: { minimum:250, rate:2.25 } },
     roofFactor:3.5, extraGutterFeet:30,
     historyCharge: { annual:0, older:25, neglected:50, unknown:25 },
     treeCharge: { light:0, moderate:10, heavy:25 },
@@ -92,12 +92,14 @@
     const base=Math.max(band.minimum,estimatedFeet*band.rate);
     const conditionCharge=Math.max(config.historyCharge[v.history],config.treeCharge[v.trees]);
     const downspoutCount=/^[0-6]$/.test(v.downspouts)?Number(v.downspouts):0;
-    const price=review.length?null:Math.ceil((base+conditionCharge+downspoutCount*config.downspoutPrice)/config.rounding)*config.rounding;
+    const subtotal=base+conditionCharge+downspoutCount*config.downspoutPrice;
+    // Preserve exact minimum-based quotes; round only size-driven quotes.
+    const price=review.length?null:base===band.minimum?subtotal:Math.ceil(subtotal/config.rounding)*config.rounding;
     const breakdown=[];
     if(price!==null){
       const downspoutCharge=downspoutCount*config.downspoutPrice;
-      // Allocate rounding into the displayed minimum/size amounts so every row adds up exactly.
-      const minimum=Math.min(Math.ceil(band.minimum/config.rounding)*config.rounding,price-conditionCharge-downspoutCharge);
+      // Keep the exact advertised minimum; any size-price rounding stays in the size adjustment.
+      const minimum=band.minimum;
       const sizeCharge=price-minimum-conditionCharge-downspoutCharge;
       breakdown.push({label:'Minimum service charge',amount:minimum,detail:'For your home’s height and access level'});
       if(sizeCharge>0)breakdown.push({label:'Home size adjustment',amount:sizeCharge,detail:''});
