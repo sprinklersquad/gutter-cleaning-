@@ -35,12 +35,12 @@ Edit `CONFIG` near the script top in `embed.html`. Keep `index.html` synchronize
 | Height proxy | Minimum | Internal rate per estimated foot |
 | --- | ---: | ---: |
 | One story | $149 | $1.25 |
-| Two stories / partial levels | $199 | $1.75 |
-| Three stories | $299 | $2.25 |
+| Two stories / partial levels | $175 | $1.75 |
+| Three stories | $250 | $2.25 |
 
-The internal length model is provisional: `3.5 × sqrt(above-ground area / stories) + 30`, rounded up to ten feet. It has not been validated against a measured local sample. Package pricing includes the larger of the cleaning-history and tree-coverage adjustments, plus $35 for each selected accessible downspout blockage. Totals round up to $5. See the installation guide for complete rules.
+The internal length model is provisional: `3.5 × sqrt(above-ground area / stories) + 30`, rounded up to ten feet. It has not been validated against a measured local sample. Package pricing includes the larger of the cleaning-history and tree-coverage adjustments, plus $35 for each selected accessible downspout blockage. Minimum-based quotes retain the exact minimum plus selected extras. Size-driven quotes round up to $5. See the installation guide for complete rules.
 
-The visible breakdown uses a minimum rounded up to $5; the remaining home-size adjustment absorbs any final price rounding. This preserves the existing total and avoids a confusing rounding fee. Extra cleaning time includes a short reason, such as “Last cleaned 1–2 years ago” or “Heavy tree coverage or pine needles.” The same breakdown is included with accepted quote requests.
+The visible breakdown shows the exact minimum: $149, $175, or $250. Any size-driven price rounding is included in the home-size adjustment. Minimum-only jobs show no home-size adjustment. Extra cleaning time includes a short reason, such as “Last cleaned 1–2 years ago” or “Heavy tree coverage or pine needles.” The same breakdown is included with accepted quote requests.
 
 The displayed price is a package quote based on the customer's answers. If those answers match the property and requested work, the stated policy is to honor that price. Changes require explanation and customer approval. The owner retains estimation risk and must verify scope, service eligibility, and submitted prices before confirmation. No booking or payment processing is included.
 
