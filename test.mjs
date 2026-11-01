@@ -34,11 +34,20 @@ for (const [name, patch, price] of cases) {
   }
 }
 const sample = context.calculateQuote(base);
-assert.deepEqual(Array.from(sample.breakdown, row => row.amount), [200, 80, 25, 70]);
+assert.deepEqual(Array.from(sample.breakdown, row => row.amount), [175, 105, 25, 70]);
 assert.equal(sample.breakdown[2].detail, 'Last cleaned 1–2 years ago');
 const minimumOnly = context.calculateQuote({ ...base, area: '500', stories: '1', history: 'annual', trees: 'light', downspouts: '0' });
-assert.equal(minimumOnly.price, 150);
+assert.equal(minimumOnly.price, 149);
 assert.equal(minimumOnly.breakdown.length, 1, 'Minimum-only job must not have a fake size adjustment');
+for (const [stories, minimum] of [['1', 149], ['2', 175], ['3', 250]]) {
+  const quote = context.calculateQuote({ ...base, area: '500', stories, history: 'annual', trees: 'light', downspouts: '0' });
+  assert.equal(quote.price, minimum, 'Exact advertised minimum must not round up');
+  assert.equal(quote.breakdown[0].amount, minimum);
+  assert.equal(quote.breakdown.length, 1);
+}
+const minimumWithExtra = context.calculateQuote({ ...base, area: '500', stories: '1', downspouts: '1' });
+assert.equal(minimumWithExtra.price, 209, 'Minimum plus $25 cleaning and $35 downspout must remain exact');
+assert.deepEqual(Array.from(minimumWithExtra.breakdown, row => row.amount), [149, 25, 35]);
 const treeDriven = context.calculateQuote({ ...base, history: 'annual' });
 assert.ok(treeDriven.breakdown.some(row => row.detail === 'Heavy tree coverage or pine needles'));
 for (const area of ['501', '1450', '2201', '9999']) {
@@ -53,4 +62,4 @@ for (const patch of [{ zip: '809' }, { area: '0' }, { stories: '4' }, { trees: '
 assert.ok(embed.includes('data-price-breakdown'), 'Customer-friendly dollar breakdown must be present');
 assert.ok(!embed.includes('Debris allowance'), 'Do not restore confusing customer terminology');
 assert.ok(!embed.includes('lengthLow'), 'Customer price ranges must stay removed');
-console.log(`${cases.length} pricing scenarios, 16 breakdown rounding scenarios, minimum-only and tree-driven breakdowns, 5 invalid-input cases, preview synchronization, and script syntax passed.`);
+console.log(`${cases.length} pricing scenarios, 16 breakdown rounding scenarios, 3 exact story minimums, exact minimum plus extras, tree-driven breakdowns, 5 invalid-input cases, preview synchronization, and script syntax passed.`);
