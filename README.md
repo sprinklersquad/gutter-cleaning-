@@ -5,7 +5,7 @@ A responsive, single-price quote calculator for residential gutter cleaning in E
 ## Customer flow
 
 1. Enter house size, stories, ZIP code, cleaning history, tree coverage, and downspout needs.
-2. See one package price, with camera inspection included.
+2. See one package price and a dollar-only breakdown: minimum service charge, home size adjustment, extra cleaning time, and selected downspout clearing. Only applicable adjustments appear; the rows add up exactly to the total. No square-foot or linear-foot rates are shown to customers.
 3. Accept the price and provide contact details for property review before scheduling.
 
 Guards, difficult access, gutters above 40 feet, and more than six blocked downspouts route to a review request without offering a price.
@@ -39,6 +39,8 @@ Edit `CONFIG` near the script top in `embed.html`. Keep `index.html` synchronize
 | Three stories | $299 | $2.25 |
 
 The internal length model is provisional: `3.5 × sqrt(above-ground area / stories) + 30`, rounded up to ten feet. It has not been validated against a measured local sample. Package pricing includes the larger of the cleaning-history and tree-coverage adjustments, plus $35 for each selected accessible downspout blockage. Totals round up to $5. See the installation guide for complete rules.
+
+The visible breakdown uses a minimum rounded up to $5; the remaining home-size adjustment absorbs any final price rounding. This preserves the existing total and avoids a confusing rounding fee. Extra cleaning time includes a short reason, such as “Last cleaned 1–2 years ago” or “Heavy tree coverage or pine needles.” The same breakdown is included with accepted quote requests.
 
 The displayed price is a package quote based on the customer's answers. If those answers match the property and requested work, the stated policy is to honor that price. Changes require explanation and customer approval. The owner retains estimation risk and must verify scope, service eligibility, and submitted prices before confirmation. No booking or payment processing is included.
 
